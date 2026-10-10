@@ -1,0 +1,17 @@
+# @three-ws/walk
+
+> A diverse, animated 3D avatar that walks and talks over your web pages — corner companion + full-page playground, with a built-in avatar picker. Powered by Three.js.
+
+- Repository: https://github.com/nirholas/three-ws-walk-sdk
+- Documentation: https://nirholas.github.io/three-ws-walk-sdk/
+- npm: https://www.npmjs.com/package/@three-ws/walk
+- License: Apache-2.0
+- Part of three.ws: https://three.ws
+
+## Docs
+
+- [README](https://github.com/nirholas/three-ws-walk-sdk/blob/main/README.md): install, usage and full API reference
+- [Full text for LLMs](https://nirholas.github.io/three-ws-walk-sdk/llms-full.txt): the entire README as plain text
+- [AGENTS.md](https://github.com/nirholas/three-ws-walk-sdk/blob/main/AGENTS.md): conventions for coding agents
+- [Security policy](https://github.com/nirholas/three-ws-walk-sdk/blob/main/SECURITY.md)
+- [Contributing](https://github.com/nirholas/three-ws-walk-sdk/blob/main/CONTRIBUTING.md)

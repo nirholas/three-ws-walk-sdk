@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@three-ws/walk: A diverse, animated 3D avatar that walks and talks over your web pages — corner companion + fu</title>
+<meta name="description" content="A diverse, animated 3D avatar that walks and talks over your web pages — corner companion + full-page playground, with a built-in avatar picker. Powered by Three.js.">
+<link rel="canonical" href="https://nirholas.github.io/three-ws-walk-sdk/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="@three-ws/walk">
+<meta property="og:description" content="A diverse, animated 3D avatar that walks and talks over your web pages — corner companion + full-page playground, with a built-in avatar picker. Powered by Three.js.">
+<meta property="og:url" content="https://nirholas.github.io/three-ws-walk-sdk/">
+<meta property="og:image" content="https://nirholas.github.io/three-ws-walk-sdk/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="text/plain" href="https://nirholas.github.io/three-ws-walk-sdk/llms.txt" title="llms.txt">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@three-ws/walk","description":"A diverse, animated 3D avatar that walks and talks over your web pages — corner companion + full-page playground, with a built-in avatar picker. Powered by Three.js.","codeRepository":"https://github.com/nirholas/three-ws-walk-sdk","url":"https://nirholas.github.io/three-ws-walk-sdk/","programmingLanguage":"JavaScript","license":"https://spdx.org/licenses/Apache-2.0","version":"0.3.1","runtimePlatform":"Node.js","isPartOf":{"@type":"WebSite","name":"three.ws","url":"https://three.ws"}}</script>
+<style>
+:root{--bg:#fff;--fg:#0f172a;--mut:#475569;--line:#e2e8f0;--code:#f1f5f9;--acc:#6d28d9}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1020;--fg:#e2e8f0;--mut:#94a3b8;--line:#1e293b;--code:#111a33;--acc:#a78bfa}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}
+header{border-bottom:1px solid var(--line)}.bar{max-width:880px;margin:0 auto;padding:14px 20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.bar a{color:var(--mut);text-decoration:none;font-size:14px}.bar a:hover,.bar a:focus-visible{color:var(--acc)}.bar b{color:var(--fg);margin-right:auto}
+main{max-width:880px;margin:0 auto;padding:28px 20px 80px}h1,h2,h3{line-height:1.25}h2{margin-top:2.2em;padding-bottom:.3em;border-bottom:1px solid var(--line)}
+a{color:var(--acc)}pre{background:var(--code);padding:14px 16px;border-radius:8px;overflow:auto}code{background:var(--code);padding:.1em .35em;border-radius:4px;font-size:.92em}pre code{padding:0;background:none}
+table{border-collapse:collapse;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left}img{max-width:100%}
+</style>
+</head>
+<body>
+<header><nav class="bar" aria-label="Project"><b>@three-ws/walk</b><a href="https://github.com/nirholas/three-ws-walk-sdk">GitHub</a><a href="https://www.npmjs.com/package/@three-ws/walk">npm</a><a href="llms.txt">llms.txt</a><a href="https://three.ws">three.ws</a></nav></header>
+<main>
+<h1>@three-ws/walk</h1>
+<p><a href="https://www.npmjs.com/package/@three-ws/walk"><img src="https://img.shields.io/npm/v/%40three-ws%2Fwalk?color=cb3837&logo=npm" alt="npm"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="license"></a>
+<a href="package.json"><img src="https://img.shields.io/node/v/%40three-ws%2Fwalk?color=339933&logo=node.js" alt="node"></a>
+<a href="package.json"><img src="https://img.shields.io/badge/runtime%20deps-0-brightgreen" alt="zero deps"></a>
+<a href="https://nirholas.github.io/three-ws-walk-sdk/"><img src="https://img.shields.io/badge/docs-site-7c3aed" alt="docs"></a>
+<a href="https://three.ws"><img src="https://img.shields.io/badge/part%20of-three.ws-111" alt="part of three.ws"></a></p>
+<blockquote>
+<p>A diverse, animated 3D avatar that <strong>walks and talks over your web pages</strong> - a corner companion plus a full‑page playground, with a built‑in avatar picker. Powered by <a href="https://threejs.org">Three.js</a>.</p>
+</blockquote>
+<p>Drop a character onto any site. It idles in the corner, turns to follow the
+cursor, waves when the visitor navigates, and greets each page. Click it and it
+<strong>detaches into a full‑page playground</strong> the visitor can steer with the keyboard
+or an on‑screen d‑pad - strolling across the page from a gentle aerial view, or
+platforming across your real DOM with gravity and jumps. Walk onto a link and
+it opens like a doorway into the next page.</p>
+<p>Every visitor can <strong>choose who walks with them</strong> from a built‑in roster of
+avatars - a robot mascot, humanoids, photoreal people, a fox, dancers,
+showpieces - or you can supply your own GLB. Whatever they pick is animated
+correctly whether the rig ships its own clips or needs the shared retargeting
+library, so nothing ever freezes in a bind/T‑pose.</p>
+<p>This is the engine behind the walking companion on <a href="https://three.ws">three.ws</a>.</p>
+<hr>
+<h2>Install</h2>
+<pre><code class="language-bash">npm install @three-ws/walk three
+</code></pre>
+<p><code>three</code> is a <strong>peer dependency</strong> - bring your own copy (&gt;= 0.150).</p>
+<p>You also need to serve two sets of assets from your origin (or a CDN you point
+<code>assetBase</code> at):</p>
+<ul>
+<li>the avatar GLBs the roster references (e.g. <code>/avatars/*.glb</code>), and</li>
+<li>the shared animation manifest + clips (<code>/animations/manifest.json</code> + clips),
+used to retarget motion onto rigs that ship no locomotion.</li>
+</ul>
+<blockquote>
+<p>The defaults match the three.ws asset layout. Override them with <code>assetBase</code>,
+<code>apiBase</code>, and <code>manifestUrl</code>, or pass your own <code>avatars</code> roster.</p>
+</blockquote>
+<p>Don&#39;t want to host the assets? Point both at the three.ws CDN - <code>assetBase: &#39;https://three.ws&#39;</code> and
+<code>manifestUrl: &#39;https://three.ws/animations/manifest.json&#39;</code> (CORS is open).
+Relative clip URLs inside the manifest resolve against the <strong>manifest&#39;s</strong>
+origin, so a cross-origin manifest just works (v0.1.1+).</p>
+<hr>
+<h2>Quick start</h2>
+<p>The whole experience, app‑style (auto‑mounts when enabled, honors <code>?walk=</code> deep
+links, resumes the playground after a &quot;dive&quot;):</p>
+<pre><code class="language-js">import { createWalkCompanion } from &#39;@three-ws/walk&#39;;
+
+const walk = createWalkCompanion();
+walk.bootstrap();
+</code></pre>
+<p>Or drive it yourself:</p>
+<pre><code class="language-js">const walk = createWalkCompanion({ defaultAvatarId: &#39;fox&#39; });
+
+walk.enable(); // mount the corner companion
+walk.openPicker(); // let the visitor choose an avatar
+walk.setAvatar(&#39;michelle&#39;); // swap the live avatar
+walk.disable(); // remove it
+</code></pre>
+<p><code>createWalkCompanion</code> is <strong>side‑effect free on import</strong> - nothing touches the
+DOM until you call <code>enable()</code> or <code>bootstrap()</code>.</p>
+<hr>
+<h2>How avatars are animated</h2>
+<p>Each roster entry declares a rig strategy so it always moves:</p>
+<table>
+<thead>
+<tr>
+<th><code>rig</code></th>
+<th>Used for</th>
+<th>How it animates</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>embedded</code></td>
+<td>self‑animated or non‑humanoid GLBs (robot, fox)</td>
+<td>plays the clips baked into the GLB; falls back to the first clip so it never freezes</td>
+</tr>
+<tr>
+<td><code>shared</code></td>
+<td>humanoids with no locomotion (or only a T‑pose)</td>
+<td>retargets the shared clip library (<code>idle</code>/<code>walk</code>/<code>run</code>/<code>wave</code>/<code>jump</code>) onto the rig</td>
+</tr>
+</tbody></table>
+<p>The same unified loader powers both the corner companion and the playground, so
+adding an avatar makes it work everywhere at once.</p>
+<h3>Emotes</h3>
+<p>In the playground, big round buttons pinned to the right edge make the
+character <strong>perform on command</strong>: dance, punch (a muay thai combo), backflip,
+and wave, with the number keys <code>1</code>-<code>4</code> as shortcuts. Only emotes the current rig
+can actually play get a button: shared rigs resolve them against the animation
+manifest (<code>DEFAULT_EMOTES</code>, overridable per entry with <code>emotes</code>), embedded rigs
+match their baked clip names (<code>Dance</code>, <code>Punch</code>, <code>Wave</code>, …). Looping clips
+perform one capped pass, then the character settles back into whatever it was
+doing. The rail rebuilds automatically when the visitor swaps avatars.</p>
+<pre><code class="language-js">// Give a custom shared-rig avatar its own dance:
+{ id: &#39;mascot&#39;, rig: &#39;shared&#39;, asset: &#39;/brand/mascot.glb&#39;, source: &#39;static&#39;,
+  emotes: { dance: &#39;av-dance-shuffle&#39; } }
+
+// Or drive emotes programmatically from a loaded controller:
+controller.emotes(); // e.g. [&#39;dance&#39;, &#39;punch&#39;, &#39;wave&#39;]
+controller.playEmote(&#39;dance&#39;); // true if it played, false if unsupported
+</code></pre>
+<h3>Custom roster</h3>
+<pre><code class="language-js">import { createWalkCompanion, WALK_AVATARS } from &#39;@three-ws/walk&#39;;
+
+createWalkCompanion({
+  avatars: [
+    ...WALK_AVATARS,
+    {
+      id: &#39;mascot&#39;,
+      name: &#39;Our Mascot&#39;,
+      category: &#39;Brand&#39;,
+      asset: &#39;/brand/mascot.glb&#39;,
+      source: &#39;static&#39;,
+      rig: &#39;shared&#39;, // retarget the shared library onto it
+      accent: &#39;#ff0066&#39;,
+    },
+  ],
+  defaultAvatarId: &#39;mascot&#39;,
+}).bootstrap();
+</code></pre>
+<p>User‑generated avatars served by a GLB proxy (<code>/api/avatars/&lt;id&gt;/glb</code>) work via
+<code>makeApiAvatarEntry(id)</code> and resolve at runtime - no need to list them.</p>
+<hr>
+<h2>API</h2>
+<h3><code>createWalkCompanion(options?) → control</code></h3>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>avatars</code></td>
+<td><code>WALK_AVATARS</code></td>
+<td>roster shown in the picker and resolvable by id</td>
+</tr>
+<tr>
+<td><code>defaultAvatarId</code></td>
+<td><code>&#39;robot&#39;</code></td>
+<td>avatar loaded when none is chosen/stored</td>
+</tr>
+<tr>
+<td><code>assetBase</code></td>
+<td><code>&#39;&#39;</code></td>
+<td>base prepended to static GLB paths (e.g. a CDN origin)</td>
+</tr>
+<tr>
+<td><code>apiBase</code></td>
+<td><code>&#39;&#39;</code></td>
+<td>base prepended to the <code>/api/avatars/&lt;id&gt;/glb</code> proxy</td>
+</tr>
+<tr>
+<td><code>manifestUrl</code></td>
+<td><code>&#39;/animations/manifest.json&#39;</code></td>
+<td>shared animation manifest</td>
+</tr>
+<tr>
+<td><code>excludedRoutes</code></td>
+<td>full‑screen 3D routes</td>
+<td>path prefixes where the companion never mounts</td>
+</tr>
+<tr>
+<td><code>enablePicker</code></td>
+<td><code>true</code></td>
+<td>show the avatar picker button</td>
+</tr>
+<tr>
+<td><code>lookAt</code></td>
+<td><code>true</code></td>
+<td>companion&#39;s chest/neck/head follow the visitor&#39;s cursor</td>
+</tr>
+<tr>
+<td><code>greeting</code></td>
+<td>built‑in</td>
+<td><code>(path) =&gt; string | null</code> to customise the page greeting</td>
+</tr>
+<tr>
+<td><code>docsUrl</code></td>
+<td><code>null</code></td>
+<td>optional &quot;make your own&quot; link in the picker footer</td>
+</tr>
+<tr>
+<td><code>storagePrefix</code></td>
+<td><code>&#39;walk&#39;</code></td>
+<td>localStorage/sessionStorage key prefix</td>
+</tr>
+</tbody></table>
+<p>The returned <strong>control</strong> object:</p>
+<pre><code class="language-ts">control.isEnabled(): boolean
+control.enable(): void
+control.disable(): void
+control.toggle(): void
+control.setAvatar(idOrEntry): void   // persist + hot-swap the live avatar
+control.openPicker(): void
+control.announce(message, opts?): Promise&lt;boolean&gt;  // deliver a line in person
+control.bootstrap(): void            // app-style auto-mount + ?walk= deep links
+control.instance                     // the live companion (or null)
+control.config                       // the resolved options, storage keys included
+</code></pre>
+<h3><code>control.announce(message, options?)</code></h3>
+<p>Deliver a message in person. The companion turns to the visitor, plays a
+gesture, and shows the line in its speech bubble. If it is not on screen (the
+visitor never turned it on, or closed it) it is summoned silently for this one
+message and walks off again afterwards, without flipping the persisted enabled
+flag: &quot;off&quot; stays off once the message is delivered.</p>
+<pre><code class="language-js">const walk = createWalkCompanion();
+
+const delivered = await walk.announce(&#39;Your model finished rendering&#39;, {
+  tone: &#39;alert&#39;,
+  emote: &#39;dance&#39;,
+  actions: [
+    { label: &#39;Open&#39;, href: &#39;/creations&#39;, title: &#39;Open your finished model&#39; },
+    { label: &#39;Turn off&#39;, onClick: () =&gt; muteAnnouncements() },
+  ],
+});
+if (!delivered) showYourOwnToast(); // no WebGL, an iframe, or an excluded route
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>option</th>
+<th>default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hold</code></td>
+<td><code>7000</code></td>
+<td>ms the bubble stays up</td>
+</tr>
+<tr>
+<td><code>tone</code></td>
+<td><code>&#39;alert&#39;</code></td>
+<td><code>&#39;alert&#39;</code> tints the bubble; <code>&#39;neutral&#39;</code> is the ambient style</td>
+</tr>
+<tr>
+<td><code>emote</code></td>
+<td><code>&#39;wave&#39;</code></td>
+<td>gesture on arrival, falling back to a wave on rigs without it</td>
+</tr>
+<tr>
+<td><code>actions</code></td>
+<td>none</td>
+<td>up to two links/buttons under the line (<code>label</code>, <code>href</code>/<code>onClick</code>)</td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td>none</td>
+<td>deliver as somebody else: a roster id or a <code>makeGuestAvatarEntry()</code> entry</td>
+</tr>
+</tbody></table>
+<h4>Delivering as somebody else</h4>
+<p>A message from a person lands differently when that person delivers it. Pass
+<code>avatar</code> and the companion swaps into that body for the length of the message,
+then swaps back:</p>
+<pre><code class="language-js">import { createWalkCompanion, makeGuestAvatarEntry } from &#39;@three-ws/walk&#39;;
+
+const walk = createWalkCompanion();
+
+await walk.announce(&#39;Sarah says she is downstairs and cannot find your door&#39;, {
+  avatar: makeGuestAvatarEntry(&#39;https://three.ws/api/avatars/&lt;id&gt;/glb&#39;, { name: &#39;Sarah&#39; }),
+});
+// Sarah walks on, says it, and the visitor&#39;s own companion is back afterwards.
+</code></pre>
+<p>The swap is never persisted: the visitor&#39;s chosen avatar is still theirs when
+the delivery is over. A guest GLB that fails to load leaves the current body in
+place and the line is still delivered, so a missing avatar never costs the
+message. This is what powers <a href="https://three.ws/companion">the three.ws Companion</a>,
+where each contact has their own body and voice.</p>
+<p>Returns <code>false</code> when no avatar could be shown, so the caller can fall back to
+its own UI. The message is rendered as text, never HTML. A delivery outranks
+the companion&#39;s ambient chatter: a page greeting cannot overwrite it while it
+is on screen. <code>control.instance.say(text, opts)</code> and
+<code>control.instance.hideBubble()</code> drive the same bubble directly when you are
+managing the mount yourself.</p>
+<h3>Roster helpers</h3>
+<pre><code class="language-js">import {
+  WALK_AVATARS, DEFAULT_AVATAR_ID, DEFAULT_SHARED_CLIPS,
+  getAvatar, defaultAvatar, listCategories,
+  makeApiAvatarEntry, resolveAvatarUrl,
+} from &#39;@three-ws/walk&#39;;
+</code></pre>
+<h3>Playground (driven for you by the companion, exported for direct use)</h3>
+<pre><code class="language-js">import {
+  launchPlayground, exitPlayground, switchPlaygroundMode,
+  getPlaygroundMode, shouldDropIn, consumeDropIn, playgroundState,
+} from &#39;@three-ws/walk&#39;;
+</code></pre>
+<h4>Checkpoint quests</h4>
+<p>Both movement modes accept an optional checkpoint quest - ordered target
+elements the visitor must steer the character to (this is what powers
+<code>@three-ws/tour</code>&#39;s Explore and Platformer modes). Reaching the active
+checkpoint freezes the character and hands control to your <code>onReach</code>; call
+<code>resume()</code> to unfreeze and light up the next one. During a quest the
+link-diving mechanic is suppressed, and a live mode switch (the M key / mode
+pill, or <code>switchPlaygroundMode()</code>) carries the checkpoints and progress across - only the physics change. <code>window</code> fires <code>walk-playground:mode</code> with
+<code>{ detail: { mode } }</code> on every switch.</p>
+<pre><code class="language-js">launchPlayground({
+  mode: &#39;platformer&#39;,                        // or &#39;stroll&#39;
+  checkpoints: [{ el: hero }, { el: pricing }, { el: faq }],
+  onReach: (i, resume) =&gt; narrate(i).then(resume),
+  onComplete: () =&gt; console.log(&#39;all checkpoints found&#39;),
+});
+</code></pre>
+<h3>Picker UI</h3>
+<pre><code class="language-js">import { createAvatarPicker } from &#39;@three-ws/walk&#39;;
+
+const picker = createAvatarPicker({
+  avatars: WALK_AVATARS,
+  currentId: &#39;robot&#39;,
+  onSelect: (entry) =&gt; console.log(&#39;chose&#39;, entry.id),
+});
+picker.show();
+</code></pre>
+<h3>Low‑level loader</h3>
+<pre><code class="language-js">import { loadWalkAvatar, getAvatar } from &#39;@three-ws/walk&#39;;
+
+const { model, controller } = await loadWalkAvatar(getAvatar(&#39;xbot&#39;));
+scene.add(model);
+controller.playEmote(&#39;punch&#39;); // one-shot performance, then back to base
+// each frame:
+controller.setState(&#39;walk&#39;); // &#39;idle&#39; | &#39;walk&#39; | &#39;run&#39; | &#39;jump&#39;
+controller.update(dt);
+</code></pre>
+<hr>
+<h2>URL controls</h2>
+<p>The companion honours these query params (via <code>bootstrap()</code>):</p>
+<ul>
+<li><code>?walk=1</code> - force the companion on</li>
+<li><code>?walk=0</code> - force it off</li>
+<li><code>?walk=play</code> - deep‑link straight into the full‑page playground</li>
+<li><code>?avatar=&lt;id&gt;</code> - load a specific roster avatar (or a user avatar id)</li>
+</ul>
+<hr>
+<h2>Accessibility &amp; performance</h2>
+<ul>
+<li><strong>One shared WebGL context budget</strong> - the companion and playground never run
+two contexts at once, and the budget coordinates with other Three.js viewers
+on the page so a busy site never hits the browser&#39;s context limit.</li>
+<li><strong>Reduced motion</strong> - respects <code>prefers-reduced-motion</code>; the avatar calms to a
+steady idle and page &quot;dives&quot; skip the animation.</li>
+<li><strong>Keyboard</strong> - playground steers with arrow keys / WASD; the picker is fully
+keyboard‑navigable; every control has a visible focus ring.</li>
+<li><strong>Lean &amp; lazy</strong> - <code>createWalkCompanion()</code> is side‑effect free: no DOM,
+renderer, avatar, or animation work happens until you call <code>enable()</code> /
+<code>bootstrap()</code>. The full‑page playground is instantiated only on the first
+detach (loaded through a dynamic <code>import()</code>), so a page that only ever shows
+the corner companion never runs playground code. On three.ws the playground is
+additionally delivered as its own lazily‑fetched chunk.</li>
+<li><strong>Never a T‑pose</strong> - a <code>shared</code>‑rig avatar whose GLB turns out not to be a
+retargetable humanoid (no skinned skeleton) falls back to its own baked clips,
+then to the default rig - it never freezes in a bind/T‑pose.</li>
+</ul>
+<hr>
+<h2>License</h2>
+<p>All rights reserved. See <a href="./LICENSE">LICENSE</a>.</p>
+<hr>
+<p>Part of <a href="https://three.ws">three.ws</a>, the open-source platform for 3D AI agents. This repository is exported from the <a href="https://github.com/nirholas/three.ws/tree/main/walk-sdk">monorepo</a>, which is the source of truth: open issues here, and send larger changes there.</p>
+
+</main>
+</body>
+</html>

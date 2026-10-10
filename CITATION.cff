@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+title: "@three-ws/walk"
+abstract: "A diverse, animated 3D avatar that walks and talks over your web pages — corner companion + full-page playground, with a built-in avatar picker. Powered by Three.js."
+type: software
+authors:
+  - name: three.ws contributors
+repository-code: "https://github.com/nirholas/three-ws-walk-sdk"
+url: "https://nirholas.github.io/three-ws-walk-sdk/"
+license: Apache-2.0
+version: 0.3.1
