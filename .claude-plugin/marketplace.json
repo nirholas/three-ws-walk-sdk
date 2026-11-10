@@ -1,13 +1,20 @@
 {
-  "name": "three-ws-walk",
-  "owner": {"name": "nirholas"},
+  "name": "three-ws-walk-sdk",
+  "owner": {
+    "name": "nirholas"
+  },
   "description": "A walking 3D avatar companion for any website.",
   "plugins": [
     {
       "name": "three-ws-walk",
-      "source": "./",
+      "source": "./plugins/three-ws-walk",
       "description": "Integrate the @three-ws/walk corner companion and playground into a site, configure the roster and announce messages.",
-      "tags": ["3d", "avatar", "threejs"]
+      "category": "development",
+      "tags": [
+        "3d",
+        "avatar",
+        "threejs"
+      ]
     }
   ]
 }
