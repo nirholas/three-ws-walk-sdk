@@ -5,7 +5,7 @@
 - Repository: https://github.com/nirholas/three-ws-walk-sdk
 - Documentation: https://nirholas.github.io/three-ws-walk-sdk/
 - npm: https://www.npmjs.com/package/@three-ws/walk
-- License: Apache-2.0
+- License: Proprietary (see LICENSE)
 - Part of three.ws: https://three.ws
 
 ## Docs
