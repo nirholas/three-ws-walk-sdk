@@ -7,5 +7,4 @@ authors:
   - name: three.ws contributors
 repository-code: "https://github.com/nirholas/three-ws-walk-sdk"
 url: "https://nirholas.github.io/three-ws-walk-sdk/"
-license: Apache-2.0
 version: 0.3.1

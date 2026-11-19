@@ -25,7 +25,7 @@
 		"three-js"
 	],
 	"author": "three.ws <support@three.ws> (https://three.ws)",
-	"license": "Apache-2.0",
+	"license": "UNLICENSED",
 	"homepage": "https://nirholas.github.io/three-ws-walk-sdk/",
 	"repository": {
 		"type": "git",

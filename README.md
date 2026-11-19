@@ -1,7 +1,7 @@
 # @three-ws/walk
 
 [![npm](https://img.shields.io/npm/v/%40three-ws%2Fwalk?color=cb3837&logo=npm)](https://www.npmjs.com/package/@three-ws/walk)
-[![license](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+[![license](https://img.shields.io/badge/license-proprietary-lightgrey)](LICENSE)
 [![node](https://img.shields.io/node/v/%40three-ws%2Fwalk?color=339933&logo=node.js)](package.json)
 [![zero deps](https://img.shields.io/badge/runtime%20deps-0-brightgreen)](package.json)
 [![docs](https://img.shields.io/badge/docs-site-7c3aed)](https://nirholas.github.io/three-ws-walk-sdk/)
